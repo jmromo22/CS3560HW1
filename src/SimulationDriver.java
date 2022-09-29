@@ -11,8 +11,8 @@ public class SimulationDriver {
         question.SetQuestions("Why is Computer Science so difficult?");
         question.SetChoices(Arrays.asList("a", "b", "c", "d", "e"));
 
-        //Random random = new Random();
-        //int Index = random.nextInt(question.GetChoices().size());
+        // Random random = new Random();
+        // int Index = random.nextInt(question.GetChoices().size());
 
         for (int i = 0; i < students.length; i++) {
             students[i] = new Student();
@@ -24,11 +24,17 @@ public class SimulationDriver {
         System.out.println(votingService.GetStatistics());
 
     }
-    
-    public static void GenerateAnswers(Question Q,Student s){
+
+    public static void GenerateAnswers(Question Q, Student s) {
         List<String> Choices = Q.GetChoices();
-        s.SetAnswers(Choices.subList(0, new Random().nextInt(Choices.size())));
-        System.out.println(s.GetAnswers().toString());
+        // System.out.println(s.GetAnswers().toString());
+
+        if (Q.getClass() == SingleChoiceQuestion.class) {
+            s.SetAnswers(Arrays.asList(Choices.get(0)));
+        } else {
+            s.SetAnswers(Choices.subList(0, new Random().nextInt(Choices.size())));
+        }
+
     }
 
 }
