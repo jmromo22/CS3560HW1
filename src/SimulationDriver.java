@@ -4,15 +4,13 @@ import java.util.List;
 
 public class SimulationDriver {
     public static void main(String[] args) throws Exception {
-        Question question = new SingleChoiceQuestion();
+        //Question question = new SingleChoiceQuestion();
+        Question question = new MultipleChoiceQuestion();
         VoteService votingService = new VoteService(question);
         Student[] students = new Student[10];
 
         question.SetQuestions("Why is Computer Science so difficult?");
         question.SetChoices(Arrays.asList("a", "b", "c", "d", "e"));
-
-        // Random random = new Random();
-        // int Index = random.nextInt(question.GetChoices().size());
 
         for (int i = 0; i < students.length; i++) {
             students[i] = new Student();
@@ -27,7 +25,6 @@ public class SimulationDriver {
 
     public static void GenerateAnswers(Question Q, Student s) {
         List<String> Choices = Q.GetChoices();
-        // System.out.println(s.GetAnswers().toString());
 
         if (Q.getClass() == SingleChoiceQuestion.class) {
             s.SetAnswers(Arrays.asList(Choices.get(0)));
